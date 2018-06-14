@@ -11,7 +11,7 @@ namespace demoapi.Controllers
     [Route("[controller]/[action]")]
     public class ProductController : Controller
     {
-        private static IList<Product> products = new List<Product>
+        public static IList<Product> products = new List<Product>
         {
             new Product{ Id = 1, Name = "JphonX 256", Price = 49000 },
             new Product{ Id = 2, Name = "Jphon8 128", Price = 27900 },

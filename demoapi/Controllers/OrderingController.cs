@@ -11,11 +11,26 @@ namespace demoapi.Controllers
     [Route("[controller]/[action]")]
     public class OrderingController : Controller
     {
+        private static int runningNo;
+
         [HttpPost]
-        public string ProductOrder([FromBody]Ordering orderInfo)
+        public Billing ProductOrder([FromBody]Ordering orderInfo)
         {
             // บันทึกข้อมูลการสั่งซื้อ
-            return "A0001";
+
+            var totalPrice = ProductController
+                .products
+                .Where(it => orderInfo.ProductIds.Any(p => p == it.Id))
+                .Sum(it => it.Price);
+                
+            runningNo++;
+
+            return new Billing
+            {
+                Username = orderInfo.Username,
+                ReferenceCode = "A00" + runningNo,
+                Price = totalPrice
+            };
         }
     }
 }

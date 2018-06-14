@@ -3,9 +3,10 @@ using System.Collections.Generic;
 
 namespace demoapi.Models
 {
-    public class Ordering
+    public class Billing
     {
         public string Username { get; set; }
-        public IEnumerable<int> ProductIds { get; set; }
+        public string ReferenceCode { get; set; }
+        public double Price { get; set; }
     }
 }
